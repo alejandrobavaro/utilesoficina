@@ -7,6 +7,8 @@ function MainContent() {
     <main className="main-content-container">
       <div className="content-wrapper">
         <MainContentNovedades />
+
+        
       </div>
     </main>
   );

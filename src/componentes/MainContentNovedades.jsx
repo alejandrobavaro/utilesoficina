@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+
+import LinksContainer from "./LinksContainer";
 import "../assets/scss/_03-Componentes/_MainContentNovedades.scss";
 
 function MainContentNovedades() {
@@ -23,8 +25,11 @@ function MainContentNovedades() {
 
   return (
     <div className="main-content-novedades">
+
+<LinksContainer />
+
       {/* Carrusel de imágenes */}
-      <div className="hero-carousel">
+      {/* <div className="hero-carousel">
         {carouselImages.map((image, index) => (
           <div
             key={index}
@@ -41,7 +46,7 @@ function MainContentNovedades() {
             />
           ))}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

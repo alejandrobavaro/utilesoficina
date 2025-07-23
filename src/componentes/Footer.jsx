@@ -1,80 +1,85 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import FooterGondraWorldDev from './FooterGondraWorldDev';
-import { FiHelpCircle } from "react-icons/fi";
+import { FiInstagram, FiYoutube, FiFacebook, FiTwitter } from "react-icons/fi";
 import "../assets/scss/_03-Componentes/_Footer.scss";
 
-function Footer() {
+function Footer({ darkMode }) {
   return (
-    <footer className="footer-container">
+    <footer className={`footer-container ${darkMode ? 'dark-mode' : ''}`}>
       <div className="footer-content">
         <div className="footer-columns">
+          {/* Columna izquierda con logo */}
           <div className="footer-column">
             <a href="#" className="footer-logo-link">
               <img
                 className="footer-logo"
-                src="/img/02-logos/logoheader1-izquierda.png"
-                alt="Logo izquierdo"
+                src="/img/02-logos/logoutilesoficina.png"
+                alt="Logo Útiles de Oficina"
               />
             </a>
           </div>
           
+          {/* Columna central con redes sociales */}
           <div className="footer-column">
             <div className="social-links">
               <a
-                href="https://www.instagram.com"
+                href="#"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="social-link"
+                aria-label="Instagram"
               >
-                <i className="bi bi-instagram" /> Instagram
+                <FiInstagram className="social-icon" />
               </a>
               <a
-                href="https://www.youtube.com"
+                href="#"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="social-link"
+                aria-label="YouTube"
               >
-                <i className="bi bi-youtube" /> YouTube
+                <FiYoutube className="social-icon" />
               </a>
               <a
-                href="https://www.facebook.com"
+                href="#"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="social-link"
+                aria-label="Facebook"
               >
-                <i className="bi bi-facebook" /> Facebook
+                <FiFacebook className="social-icon" />
               </a>
               <a
-                href="https://www.twitter.com"
+                href="#"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="social-link"
+                aria-label="Twitter"
               >
-                <i className="bi bi-twitter" /> Twitter
+                <FiTwitter className="social-icon" />
               </a>
-              <Link to="/ayuda" className="social-link help-link">
-                <FiHelpCircle className="me-2" />
-                Ayuda
-              </Link>
             </div>
           </div>
           
+          {/* Columna derecha con logo */}
           <div className="footer-column">
             <a href="#" className="footer-logo-link">
               <img
                 className="footer-logo"
-                src="/img/02-logos/logoheader2-derecha.png"
-                alt="Logo derecho"
+                src="/img/02-logos/logoutilesoficina.png"
+                alt="Logo Útiles de Oficina"
               />
             </a>
           </div>
         </div>
         
+        {/* Divisor animado */}
         <div className="footer-divider"></div>
         
+        {/* Copyright y marca */}
         <div className="footer-copyright">
-          <FooterGondraWorldDev />
+          <FooterGondraWorldDev darkMode={darkMode} />
         </div>
       </div>
     </footer>

@@ -1,6 +1,4 @@
-// src/App.jsx
-
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -12,75 +10,65 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./assets/scss/_01-General/_App.scss";
 
-//------------HEADER--------------//
+//------------COMPONENTES--------------//
 import HeaderUnificado from "./componentes/HeaderUnificado";
-
-//-----------HOME - MAIN-----------------//
 import MainContent from "./componentes/MainContent";
 import MainWhatsappIcon from "./componentes/MainWhatsappIcon";
-import MainCalendarioPagos from "./componentes/MainCalendarioPagos";
 import MainPublicidadSlider from "./componentes/MainPublicidadSlider";
-import MainTareasEnProceso from "./componentes/MainTareasEnProceso";
-import MainNotas from "./componentes/MainNotas";
-import MainCalculadora from "./componentes/MainCalculadora";
-import MainTemporizadorTareas from "./componentes/MainTemporizadorTareas";
-
-//--------------FOOTER----------------//
 import Footer from "./componentes/Footer";
-
-//-----------CONTACTO-----------------//
 import ContactoLogoRedes from "./componentes/ContactoLogoRedes";
 import ContactoFormularioSlider from "./componentes/ContactoFormularioSlider";
-
-//-----------OTROS--------------//
 import ConsultasAyuda from "./componentes/ConsultasAyuda";
 
 function App() {
-  const [searchQuery, setSearchQuery] = React.useState('');
-  const [selectedCategory, setSelectedCategory] = React.useState('');
-
-  const handleCategoryChange = (category) => {
-    setSelectedCategory(category);
-  };
+  const [darkMode, setDarkMode] = useState(false);
+  
+  // Efecto para aplicar las clases de modo oscuro
+  useEffect(() => {
+    if (darkMode) {
+      document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
+    }
+  }, [darkMode]);
 
   return (
     <Router>
-      <HeaderUnificado 
-        categories={['Servicios', 'Impuestos', 'Alquileres']} 
-        onCategoryChange={handleCategoryChange}
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
-      />
-
-      <hr className="border border-0 opacity-20" />
-
-      <div className="main-content">
-        <div className="content">
-          <Routes>
-            <Route path="/" element={<MainContent />} />
-            <Route path="/calendario-pagos" element={<MainCalendarioPagos />} />
-            <Route
-              path="/contacto"
-              element={
-                <>
-                  <ContactoLogoRedes />
-                  <ContactoFormularioSlider />
-                </>
-              }
-            />
-            <Route path="/ayuda" element={<ConsultasAyuda />} />
-            <Route path="/MainTareasEnProceso" element={<MainTareasEnProceso />} />
-            <Route path="/main-notas" element={<MainNotas />} />
-            <Route path="/MainCalculadora" element={<MainCalculadora />} />
-            <Route path="/MainTemporizadorTareas" element={<MainTemporizadorTareas />} />
-          </Routes>
-        </div>
+      {/* Fondo animado */}
+      <div className="background-animation">
+        <div className="particles"></div>
+        <div className="gradient-bg"></div>
       </div>
+      
+      {/* Contenido principal */}
+      <div className="content-wrapper">
+        <HeaderUnificado 
+          darkMode={darkMode}
+          toggleDarkMode={() => setDarkMode(!darkMode)}
+        />
 
-      <hr className="border border-0 opacity-20" />
-      <MainPublicidadSlider />
-      <Footer />
-      <MainWhatsappIcon />
+        <div className="main-content">
+          <div className="content">
+            <Routes>
+              <Route path="/" element={<MainContent darkMode={darkMode} />} />
+              <Route
+                path="/contacto"
+                element={
+                  <>
+                    <ContactoLogoRedes darkMode={darkMode} />
+                    <ContactoFormularioSlider darkMode={darkMode} />
+                  </>
+                }
+              />
+              <Route path="/ayuda" element={<ConsultasAyuda darkMode={darkMode} />} />
+            </Routes>
+          </div>
+        </div>
+
+        <MainPublicidadSlider darkMode={darkMode} />
+        <Footer darkMode={darkMode} />
+        <MainWhatsappIcon darkMode={darkMode} />
+      </div>
     </Router>
   );
 }

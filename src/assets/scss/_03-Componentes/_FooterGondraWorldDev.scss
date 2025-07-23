@@ -1,112 +1,66 @@
+/* Estilos base para móvil (mobile-first) */
 .trademarkGondraFooter {
   text-align: center;
-  margin: 0;
-  padding: 20px 0;
-
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 1rem 0;
+  
+  &.dark-mode {
+    .textoFooterGondraWorld {
+      color: #00cec9;
+      
+      &:hover {
+        color: #fd79a8;
+      }
+    }
+  }
 }
 
 .textoFooterAutor {
-  border-radius: 8px;
-  width: 100%;
-  padding: 20px;
-
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  color: #495057;
-  margin-bottom: 20px;
+  padding: 1rem;
 }
 
-.gridPadreProductosGondraFooter1 {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  justify-content: center;
-  padding: 15px;
-  border-radius: 8px;
-  width: 100%;
-
-}
-
-.texto-principal {
-  font-size: 16px;
-  color: #4a6fa5;
-  margin-bottom: 10px;
-  font-weight: 500;
+.footer-dev-link {
+  text-decoration: none;
 }
 
 .textoFooterGondraWorld {
-  font-size: 14px;
-  transition: transform 0.2s ease;
-  color: #6c757d;
-
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #6c5ce7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+  
   &:hover {
-    transform: scale(1.05);
-    color: #4a6fa5;
+    color: #fd79a8;
   }
 }
 
-.texto-secundario {
-  font-size: 14px;
-  color: #6c757d;
-  margin-left: 10px;
-}
-
-.imagen-limitada8 {
-  max-width: 120px;
-  height: auto;
-  transition: transform 0.2s ease;
-
-  &:hover {
-    transform: scale(1.05);
+.icon-spin {
+  animation: spin 4s linear infinite;
+  
+  &.reverse {
+    animation-direction: reverse;
   }
 }
 
-.objetoCentrado1 {
-  display: block;
-  margin: 0 auto;
+/* Animaciones */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
-hr {
-  margin: 20px 0;
-  border: none;
-  border-top: 1px solid #e0e0e0;
-}
-
-@media (max-width: 768px) {
-  .texto-principal {
-    font-size: 15px;
-  }
-
-  .texto-secundario {
-    font-size: 14px;
-  }
-
-  .imagen-limitada8 {
-    max-width: 100px;
+/* Media query para tablet (768px) */
+@media (min-width: 768px) {
+  .textoFooterGondraWorld {
+    font-size: 0.85rem;
   }
 }
 
-@media (max-width: 480px) {
-  .texto-principal {
-    font-size: 14px;
-  }
-
-  .texto-secundario {
-    font-size: 13px;
-  }
-
-  .imagen-limitada8 {
-    max-width: 80px;
-  }
-
-  .gridPadreProductosGondraFooter1 {
-    gap: 10px;
-    padding: 10px;
-    margin-bottom: 20px;
-  }
-
-  .textoFooterAutor {
-    padding: 15px;
-    margin-top: 0;
+/* Media query para escritorio (1024px) */
+@media (min-width: 1024px) {
+  .textoFooterGondraWorld {
+    font-size: 0.9rem;
   }
 }

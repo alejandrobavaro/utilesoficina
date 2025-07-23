@@ -1,0 +1,237 @@
+/* Estilos base para móvil (mobile-first) */
+.links-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+  text-align: center;
+  
+  &.dark-mode {
+    h1 {
+      color: #f5f6fa;
+    }
+    
+    .subtitle {
+      color: rgba(245, 246, 250, 0.7);
+    }
+    
+    .app-name {
+      color: #f5f6fa;
+    }
+  }
+}
+
+.links-container h1 {
+  font-size: 1.75rem;
+  margin-bottom: 0.5rem;
+  color: #2c3e50;
+  position: relative;
+  display: inline-block;
+  animation: fadeInDown 0.8s ease-out;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(90deg, #6c5ce7, #00cec9);
+    border-radius: 3px;
+  }
+  
+  .dark-mode &::after {
+    background: linear-gradient(90deg, #00cec9, #fd79a8);
+  }
+}
+
+.links-container .subtitle {
+  font-size: 1rem;
+  color: #7f8c8d;
+  margin-bottom: 1.5rem;
+  animation: fadeIn 1s ease-out 0.3s both;
+}
+
+.links-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  perspective: 1000px;
+}
+
+.app-link {
+  text-decoration: none;
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  animation: float 6s ease-in-out infinite;
+  transform-style: preserve-3d;
+  
+  &:nth-child(odd) {
+    animation-delay: 0.5s;
+  }
+  
+  &:hover {
+    animation-play-state: paused;
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+    
+    .app-logo {
+      transform: scale(1.1);
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+    }
+    
+    .logo-hover-effect {
+      opacity: 0.8;
+      transform: scale(1);
+    }
+  }
+  
+  .dark-mode & {
+    background: #2f3640;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    
+    &:hover {
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+    }
+  }
+}
+
+/* Animación de flotación mejorada */
+@keyframes float {
+  0%, 100% { 
+    transform: translateY(0) rotateX(0deg) rotateY(0deg);
+  }
+  25% {
+    transform: translateY(-10px) rotateX(2deg) rotateY(1deg);
+  }
+  50% { 
+    transform: translateY(-5px) rotateX(0deg) rotateY(0deg);
+  }
+  75% {
+    transform: translateY(-10px) rotateX(-2deg) rotateY(-1deg);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.app-logo-container {
+  width: 180px;
+  height: auto;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.app-logo {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.logo-hover-effect {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: var(--hover-color);
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+.app-name {
+  color: #2c3e50;
+  font-weight: 500;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  transition: color 0.3s ease;
+}
+
+/* Media queries (se mantienen igual) */
+@media (min-width: 768px) {
+  .links-container {
+    padding: 1.5rem;
+  }
+  
+  .links-container h1 {
+    font-size: 2rem;
+  }
+  
+  .links-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+  
+  .app-link {
+    padding: 1.5rem 1rem;
+    animation: float 7s ease-in-out infinite;
+  }
+  
+  .app-logo-container {
+    width: 90px;
+    height: 90px;
+  }
+  
+  .app-name {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .links-container {
+    padding: 2rem;
+  }
+  
+  .links-container h1 {
+    font-size: 2.25rem;
+  }
+  
+  .links-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .app-link {
+    padding: 2rem 1.5rem;
+    animation: float 8s ease-in-out infinite;
+  }
+  
+  .app-logo-container {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .app-name {
+    font-size: 1.1rem;
+  }
+}
