@@ -21,17 +21,41 @@ import ContactoFormularioSlider from "./componentes/ContactoFormularioSlider";
 import ConsultasAyuda from "./componentes/ConsultasAyuda";
 
 function App() {
-  // Inicializamos el estado en true para que el modo oscuro esté activado por defecto
-  const [darkMode, setDarkMode] = useState(true);
+  /**
+   * Estado para el modo oscuro con inicialización desde localStorage
+   * - Verifica si hay una preferencia guardada en localStorage
+   * - Si no existe, usa true (modo oscuro) como valor predeterminado
+   */
+  const [darkMode, setDarkMode] = useState(() => {
+    try {
+      const savedMode = localStorage.getItem('darkMode');
+      return savedMode ? JSON.parse(savedMode) : true; // Default true (modo oscuro)
+    } catch (error) {
+      console.error("Error al leer darkMode de localStorage:", error);
+      return true; // Fallback a modo oscuro si hay error
+    }
+  });
   
-  // Efecto para aplicar las clases de modo oscuro
+  /**
+   * Efecto para manejar el modo oscuro:
+   * 1. Guarda la preferencia en localStorage cuando cambia
+   * 2. Aplica/remueve las clases CSS para el modo oscuro
+   */
   useEffect(() => {
-    if (darkMode) {
-      document.body.classList.add('dark-mode');
-      document.documentElement.classList.add('dark-mode');
-    } else {
-      document.body.classList.remove('dark-mode');
-      document.documentElement.classList.remove('dark-mode');
+    try {
+      // 1. Persistencia: Guardar en localStorage
+      localStorage.setItem('darkMode', JSON.stringify(darkMode));
+      
+      // 2. Aplicar clases CSS
+      if (darkMode) {
+        document.body.classList.add('dark-mode');
+        document.documentElement.classList.add('dark-mode');
+      } else {
+        document.body.classList.remove('dark-mode');
+        document.documentElement.classList.remove('dark-mode');
+      }
+    } catch (error) {
+      console.error("Error al manejar darkMode:", error);
     }
   }, [darkMode]);
 
@@ -44,11 +68,13 @@ function App() {
       
       {/* Contenido principal */}
       <div className="content-wrapper">
+        {/* Header con capacidad de cambiar el modo */}
         <HeaderUnificado 
           darkMode={darkMode}
           toggleDarkMode={() => setDarkMode(!darkMode)}
         />
 
+        {/* Contenido principal enrutado */}
         <div className="main-content">
           <div className="content">
             <Routes>
@@ -67,6 +93,7 @@ function App() {
           </div>
         </div>
 
+        {/* Componentes adicionales */}
         <MainPublicidadSlider darkMode={darkMode} />
         <Footer darkMode={darkMode} />
         <MainWhatsappIcon darkMode={darkMode} />
