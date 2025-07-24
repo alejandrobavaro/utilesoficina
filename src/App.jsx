@@ -21,22 +21,24 @@ import ContactoFormularioSlider from "./componentes/ContactoFormularioSlider";
 import ConsultasAyuda from "./componentes/ConsultasAyuda";
 
 function App() {
-  const [darkMode, setDarkMode] = useState(false);
+  // Inicializamos el estado en true para que el modo oscuro esté activado por defecto
+  const [darkMode, setDarkMode] = useState(true);
   
   // Efecto para aplicar las clases de modo oscuro
   useEffect(() => {
     if (darkMode) {
       document.body.classList.add('dark-mode');
+      document.documentElement.classList.add('dark-mode');
     } else {
       document.body.classList.remove('dark-mode');
+      document.documentElement.classList.remove('dark-mode');
     }
   }, [darkMode]);
 
   return (
     <Router>
-      {/* Fondo animado */}
+      {/* Fondo animado simplificado */}
       <div className="background-animation">
-        <div className="particles"></div>
         <div className="gradient-bg"></div>
       </div>
       

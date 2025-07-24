@@ -1,4 +1,10 @@
-/* Estilos base para móvil (mobile-first) */
+/**
+ * ESTILOS BASE PARA MÓVIL (MOBILE-FIRST)
+ * - Estilos iniciales para pantallas pequeñas
+ * - Se ajustan progresivamente en breakpoints mayores
+ */
+
+/* Contenedor principal */
 .links-container {
   width: 100%;
   max-width: 1200px;
@@ -6,6 +12,7 @@
   padding: 1rem;
   text-align: center;
   
+  /* Estilos para modo oscuro */
   &.dark-mode {
     h1 {
       color: #f5f6fa;
@@ -21,170 +28,169 @@
   }
 }
 
-.links-container h1 {
-  font-size: 1.75rem;
-  margin-bottom: 0.5rem;
-  color: #2c3e50;
-  position: relative;
-  display: inline-block;
-  animation: fadeInDown 0.8s ease-out;
-  
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 50px;
-    height: 3px;
-    background: linear-gradient(90deg, #6c5ce7, #00cec9);
-    border-radius: 3px;
-  }
-  
-  .dark-mode &::after {
-    background: linear-gradient(90deg, #00cec9, #fd79a8);
-  }
-}
-
-.links-container .subtitle {
-  font-size: 1rem;
-  color: #7f8c8d;
+/* Contenedor del título con logo */
+.title-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-bottom: 1.5rem;
-  animation: fadeIn 1s ease-out 0.3s both;
+  
+  /* Logo principal */
+  .main-logo {
+    width: 80px; /* Tamaño adecuado para móvil */
+    height: auto;
+    margin-bottom: 0.5rem;
+    object-fit: contain;
+    
+    /* Efecto de contorno similar a los logos de las apps */
+    filter: 
+      drop-shadow(0 0 2px rgba(0, 0, 0, 0.2))
+      drop-shadow(0 0 4px rgba(108, 92, 231, 0.4));
+    
+    /* Modo oscuro - contorno turquesa */
+    .dark-mode & {
+      filter: 
+        drop-shadow(0 0 2px rgba(0, 0, 0, 0.4))
+        drop-shadow(0 0 4px rgba(0, 206, 201, 0.6));
+    }
+  }
+  
+  /* Texto del título */
+  .title-text {
+    h1 {
+      font-size: 1.75rem;
+      margin-bottom: 0.25rem;
+      color: rgb(0, 162, 255);
+    }
+    
+    .subtitle {
+      font-size: 1rem;
+ 
+      color: rgb(3, 139, 163);
+      margin: 0;
+    }
+  }
 }
 
+/* Grilla de aplicaciones */
 .links-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
-  perspective: 1000px;
 }
 
+/* Estilos para cada tarjeta de aplicación */
 .app-link {
   text-decoration: none;
-  background: white;
+  background: rgb(197, 197, 197);
   border-radius: 12px;
   padding: 1.5rem 1rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
-  overflow: hidden;
-  animation: float 6s ease-in-out infinite;
-  transform-style: preserve-3d;
-  
-  &:nth-child(odd) {
-    animation-delay: 0.5s;
-  }
-  
+      color: white;
+  /* Efecto hover */
   &:hover {
-    animation-play-state: paused;
-    transform: translateY(-5px) scale(1.03);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
     
     .app-logo {
       transform: scale(1.1);
-      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
-    }
-    
-    .logo-hover-effect {
-      opacity: 0.8;
-      transform: scale(1);
     }
   }
   
+  /* Modo oscuro */
   .dark-mode & {
     background: #2f3640;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+
+  }
+}
+
+/* Contenedor del logo con tamaño aumentado */
+.app-logo-container {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Imagen del logo con contorno que sigue la forma PNG */
+.app-logo {
+  max-width: 140%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: all 0.3s ease;
+  
+  /* Efecto de contorno */
+  filter: 
+    drop-shadow(0 0 2px rgba(0, 0, 0, 0.2))
+    drop-shadow(0 0 4px rgba(108, 92, 231, 0.4));
+  
+  /* Efecto hover */
+  &:hover {
+    filter: 
+      drop-shadow(0 0 3px rgba(0, 0, 0, 0.3))
+      drop-shadow(0 0 6px rgba(108, 92, 231, 0.6));
+  }
+  
+  /* Modo oscuro - contorno turquesa */
+  .dark-mode & {
+    filter: 
+      drop-shadow(0 0 2px rgba(0, 0, 0, 0.4))
+      drop-shadow(0 0 4px rgba(0, 206, 201, 0.6));
     
     &:hover {
-      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+      filter: 
+        drop-shadow(0 0 3px rgba(0, 0, 0, 0.5))
+        drop-shadow(0 0 8px rgba(0, 206, 201, 0.8));
     }
   }
 }
 
-/* Animación de flotación mejorada */
-@keyframes float {
-  0%, 100% { 
-    transform: translateY(0) rotateX(0deg) rotateY(0deg);
-  }
-  25% {
-    transform: translateY(-10px) rotateX(2deg) rotateY(1deg);
-  }
-  50% { 
-    transform: translateY(-5px) rotateX(0deg) rotateY(0deg);
-  }
-  75% {
-    transform: translateY(-10px) rotateX(-2deg) rotateY(-1deg);
-  }
-}
-
-@keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-.app-logo-container {
-  width: 180px;
-  height: auto;
-  margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-.app-logo {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  transition: all 0.3s ease;
-  position: relative;
-  z-index: 2;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
-}
-
-.logo-hover-effect {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background: var(--hover-color);
-  opacity: 0;
-  transform: scale(0.8);
-  transition: all 0.3s ease;
-  z-index: 1;
-}
-
+/* Nombre de la aplicación */
 .app-name {
   color: #2c3e50;
-  font-weight: 500;
   font-size: 0.9rem;
-  margin-top: 0.5rem;
-  transition: color 0.3s ease;
+  font-weight: 500;
 }
 
-/* Media queries (se mantienen igual) */
+/**
+ * MEDIA QUERIES PARA RESPONSIVE
+ * - Breakpoint tablet: 768px
+ * - Breakpoint escritorio: 1024px
+ */
+
+/* Tablet (768px en adelante) */
 @media (min-width: 768px) {
   .links-container {
     padding: 1.5rem;
   }
   
-  .links-container h1 {
-    font-size: 2rem;
+  /* Ajustes para el contenedor del título */
+  .title-container {
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 2rem;
+    
+    .main-logo {
+      width: 100px;
+      margin-bottom: 0;
+      margin-right: 1rem;
+    }
+    
+    .title-text {
+      text-align: left;
+      
+      h1 {
+        font-size: 2rem;
+      }
+      
+      .subtitle {
+        font-size: 1.1rem;
+      }
+    }
   }
   
   .links-grid {
@@ -194,12 +200,11 @@
   
   .app-link {
     padding: 1.5rem 1rem;
-    animation: float 7s ease-in-out infinite;
   }
   
   .app-logo-container {
-    width: 90px;
-    height: 90px;
+    width: 140px;
+    height: 140px;
   }
   
   .app-name {
@@ -207,13 +212,27 @@
   }
 }
 
+/* Escritorio (1024px en adelante) */
 @media (min-width: 1024px) {
   .links-container {
     padding: 2rem;
   }
   
-  .links-container h1 {
-    font-size: 2.25rem;
+  /* Ajustes para el contenedor del título */
+  .title-container {
+    .main-logo {
+      width: 250px;
+    }
+    
+    .title-text {
+      h1 {
+        font-size: 2.25rem;
+      }
+      
+      .subtitle {
+        font-size: 1.2rem;
+      }
+    }
   }
   
   .links-grid {
@@ -223,12 +242,11 @@
   
   .app-link {
     padding: 2rem 1.5rem;
-    animation: float 8s ease-in-out infinite;
   }
   
   .app-logo-container {
-    width: 100px;
-    height: 100px;
+    width: 160px;
+    height: 160px;
   }
   
   .app-name {

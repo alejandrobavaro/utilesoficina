@@ -1,35 +1,32 @@
-/*--------------Variables Globales--------------*/
-$primary-color: #6c5ce7;
-$secondary-color: #00cec9;
-$accent-color: #fd79a8;
-$text-light: #2d3436;
-$text-dark: #f5f6fa;
-$bg-light: #f5f7fa;
-$bg-dark: #1e272e;
-$card-bg-light: #ffffff;
-$card-bg-dark: #2f3640;
-
-/*--------------Estilos Base--------------*/
-* {
+/* ESTILOS BASE PARA EL CUERPO DEL DOCUMENTO */
+/* ----------------------------------------- */
+/* Establece los estilos fundamentales para html y body */
+html, body, #root {
+  height: 100%;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: 'Roboto', sans-serif;
 }
 
-html, body {
-  height: 100%;
-  font-family: 'Roboto', sans-serif;
-  background-color: $bg-light;
-  color: $text-light;
+/* FONDO BASE (PARA AMBOS MODOS) */
+/* ---------------------------- */
+/* Aplicamos el color de fondo directamente al html */
+html {
+  background-color: #f5f7fa; /* Color de fondo base para modo claro */
   
+  /* Modo oscuro - cubre toda la pantalla */
   &.dark-mode {
-    background-color: $bg-dark;
-    color: $text-dark;
+    background-color: #1e272e; /* Color de fondo oscuro completo */
   }
 }
 
-/*--------------Animaciones de Fondo--------------*/
+body {
+  /* Fondo transparente para que se vea el color del html */
+  background-color: transparent;
+}
+
+/* FONDO ANIMADO */
+/* ------------- */
 .background-animation {
   position: fixed;
   top: 0;
@@ -39,38 +36,42 @@ html, body {
   z-index: -1;
   overflow: hidden;
   
-  .particles {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><circle cx="20" cy="20" r="0.5" fill="%236c5ce7" opacity="0.2"/><circle cx="80" cy="20" r="0.5" fill="%2300cec9" opacity="0.2"/><circle cx="50" cy="50" r="0.5" fill="%23fd79a8" opacity="0.2"/><circle cx="10" cy="80" r="0.5" fill="%236c5ce7" opacity="0.2"/><circle cx="70" cy="70" r="0.5" fill="%2300cec9" opacity="0.2"/></svg>');
-    background-size: 100px 100px;
-    animation: particlesMove 20s linear infinite;
-    
-    .dark-mode & {
-      opacity: 0.1;
-    }
-  }
-  
   .gradient-bg {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at 20% 50%, rgba($primary-color, 0.1), transparent 30%),
-                radial-gradient(circle at 80% 30%, rgba($secondary-color, 0.1), transparent 30%);
+    
+    /* Gradiente para modo claro */
+    background: radial-gradient(circle at 20% 50%, rgba(108, 92, 231, 0.05), transparent 40%),
+                radial-gradient(circle at 80% 30%, rgba(0, 206, 201, 0.05), transparent 40%);
     animation: gradientPulse 15s ease infinite alternate;
+    
+    /* Modo oscuro - gradiente más sutil */
+    .dark-mode & {
+      background: radial-gradient(circle at 20% 50%, rgba(108, 92, 231, 0.03), transparent 40%),
+                  radial-gradient(circle at 80% 30%, rgba(0, 206, 201, 0.03), transparent 40%);
+    }
   }
+}
+
+/* ESTRUCTURA PRINCIPAL */
+/* -------------------- */
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .content-wrapper {
   position: relative;
   z-index: 1;
-  min-height: 100vh;
+  flex: 1;
   display: flex;
   flex-direction: column;
 }
 
-/*--------------Estilos para el Contenedor Principal--------------*/
+/* CONTENIDO PRINCIPAL */
+/* ------------------- */
 .main-content {
   flex: 1;
   padding: 2rem;
@@ -78,43 +79,44 @@ html, body {
   .content {
     max-width: 1200px;
     margin: 0 auto;
-    background-color: $card-bg-light;
+    background-color: #ffffff;
     border-radius: 16px;
     padding: 2rem;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
     
     .dark-mode & {
-      background-color: $card-bg-dark;
+      background-color: #2f3640;
       box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
     }
   }
 }
 
-/*--------------Animaciones--------------*/
-@keyframes particlesMove {
-  from { background-position: 0 0; }
-  to { background-position: 100px 100px; }
+/* TRANSICIONES Y ANIMACIONES */
+/* ------------------------- */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 @keyframes gradientPulse {
-  0% { opacity: 0.5; }
-  50% { opacity: 1; }
-  100% { opacity: 0.5; }
+  0% { opacity: 0.3; }
+  50% { opacity: 0.7; }
+  100% { opacity: 0.3; }
 }
 
-/*--------------Modo Oscuro--------------*/
+/* COMPONENTES EN MODO OSCURO */
+/* ------------------------- */
 .dark-mode {
   .links-container {
     h1, .app-name {
-      color: $text-dark;
+      color: #f5f6fa;
     }
     
     .subtitle {
-      color: rgba($text-dark, 0.7);
+      color: rgba(245, 246, 250, 0.7);
     }
     
     .app-link {
-      background: lighten($card-bg-dark, 5%);
+      background-color: #3a4756;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
       
       &:hover {
@@ -124,13 +126,24 @@ html, body {
   }
 }
 
-/*--------------Responsive--------------*/
+/* RESPONSIVE */
+/* ---------- */
 @media (max-width: 768px) {
   .main-content {
     padding: 1rem;
     
     .content {
       padding: 1.5rem;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .main-content {
+    padding: 2.5rem;
+    
+    .content {
+      padding: 3rem;
     }
   }
 }
